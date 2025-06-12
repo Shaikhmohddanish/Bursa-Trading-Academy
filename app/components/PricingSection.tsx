@@ -149,15 +149,17 @@ export default function PricingSection() {
                   ))}
                 </ul>
 
-                <Button
-                  className={`w-full mt-6 ${
-                    plan.popular
-                      ? "bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
-                      : "bg-white/10 hover:bg-white/20 text-white"
-                  }`}
-                >
-                  Get Started
-                </Button>
+                <a href="tel:+60113785354">
+                  <Button
+                    className={`w-full mt-6 ${
+                      plan.popular
+                        ? "bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
+                        : "bg-white/10 hover:bg-white/20 text-white"
+                    }`}
+                  >
+                    Get Started
+                  </Button>
+                </a>
               </CardContent>
             </Card>
           ))}

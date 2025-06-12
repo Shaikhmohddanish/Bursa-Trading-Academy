@@ -30,21 +30,21 @@ export default function TestimonialsSection() {
       content:
         "Thanks to Bursa Trading Academy, I'm now consistently profitable and confident in my trading decisions!",
       rating: 5,
-      avatar: "/placeholder.svg?height=60&width=60",
+      avatar: "/placeholder-user.jpg?height=60&width=60",
     },
     {
       name: "Siti",
       role: "Full-Time Trader",
       content: "The personalized guidance and invaluable market insights transformed my trading approach and results.",
       rating: 5,
-      avatar: "/placeholder.svg?height=60&width=60",
+      avatar: "/placeholder-user.jpg?height=60&width=60",
     },
     {
       name: "David",
       role: "Investment Analyst",
       content: "The comprehensive curriculum and expert mentorship helped me develop a systematic approach to trading.",
       rating: 5,
-      avatar: "/placeholder.svg?height=60&width=60",
+      avatar: "/placeholder-user.jpg?height=60&width=60",
     },
     {
       name: "Sarah",
@@ -52,7 +52,7 @@ export default function TestimonialsSection() {
       content:
         "From zero knowledge to profitable trading in just 3 months. The structured learning path is incredible!",
       rating: 5,
-      avatar: "/placeholder.svg?height=60&width=60",
+      avatar: "/placeholder-user.jpg?height=60&width=60",
     },
   ]
 
@@ -94,7 +94,7 @@ export default function TestimonialsSection() {
 
                 <div className="flex items-center space-x-3">
                   <img
-                    src={testimonial.avatar || "/placeholder.svg"}
+                    src={testimonial.avatar || "/placeholder-user.jpg"}
                     alt={testimonial.name}
                     className="w-12 h-12 rounded-full"
                   />

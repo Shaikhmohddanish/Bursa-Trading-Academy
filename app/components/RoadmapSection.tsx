@@ -72,7 +72,7 @@ export default function RoadmapSection() {
             <div className="relative">
               <div className="bg-gradient-to-br from-slate-800/50 to-purple-900/50 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
                 <img
-                  src="/placeholder.svg?height=400&width=600"
+                  src="/trading lines.jpeg?height=400&width=600"
                   alt="Trading Setup"
                   className="w-full h-64 object-cover rounded-lg"
                 />

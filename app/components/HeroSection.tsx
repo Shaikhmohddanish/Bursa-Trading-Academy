@@ -51,13 +51,17 @@ export default function HeroSection() {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-5">
-                Start Your Journey
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-              <Button size="lg" variant="outline" className="border-white/20 text-black hover:bg-slate-800 hover:text-white px-6 py-5">
-                Free Consultation
-              </Button>
+              <a href="tel:+60113785354">
+                <Button size="lg" className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-5 w-full sm:w-auto">
+                  Start Your Journey
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </a>
+              <a href="tel:+60113785354">
+                <Button size="lg" variant="outline" className="border-white/20 text-black hover:bg-slate-800 hover:text-white px-6 py-5 w-full sm:w-auto">
+                  Free Consultation
+                </Button>
+              </a>
             </div>
           </div>
 

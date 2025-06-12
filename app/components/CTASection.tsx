@@ -62,20 +62,24 @@ export default function CTASection() {
 
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button
-                size="lg"
-                className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-lg px-8 py-6"
-              >
-                Start Your Journey
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white/20 text-black hover:bg-white/10 hover:text-white text-lg px-8 py-6"
-              >
-                Free Consultation
-              </Button>
+              <a href="tel:+60113785354">
+                <Button
+                  size="lg"
+                  className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-lg px-8 py-6 w-full sm:w-auto"
+                >
+                  Start Your Journey
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </a>
+              <a href="tel:+60113785354">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-white/20 text-black hover:bg-white/10 hover:text-white text-lg px-8 py-6 w-full sm:w-auto"
+                >
+                  Free Consultation
+                </Button>
+              </a>
             </div>
 
             {/* Quick Stats */}
@@ -105,7 +109,7 @@ export default function CTASection() {
             <div className="relative">
               <div className="bg-gradient-to-br from-slate-800/50 to-purple-900/50 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
                 <img
-                  src="/placeholder.svg?height=400&width=500"
+                  src="/person-with-laptop.png?height=400&width=500"
                   alt="Success Visualization"
                   className="w-full h-64 object-cover rounded-lg mb-6"
                 />

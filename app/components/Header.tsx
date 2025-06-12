@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { Phone, ChevronRight, Mail } from "lucide-react"
+import { Phone, Mail, Home, Info, BookOpen, DollarSign, MessageCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default function Header() {
@@ -12,14 +12,10 @@ export default function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setScrolled(true)
-      } else {
-        setScrolled(false)
-      }
+      setScrolled(window.scrollY > 20)
     }
 
-    window.addEventListener("scroll", handleScroll)
+    window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
@@ -37,62 +33,59 @@ export default function Header() {
   }, [isOpen])
 
   const navItems = [
-    { name: "Home", href: "#home", icon: "🏠" },
-    { name: "About", href: "#about", icon: "ℹ️" },
-    { name: "Courses", href: "#courses", icon: "📚" },
-    { name: "Pricing", href: "#pricing", icon: "💰" },
-    { name: "Contact", href: "#contact", icon: "📞" },
+    { name: "Home", href: "#home", icon: Home },
+    { name: "About", href: "#about", icon: Info },
+    { name: "Courses", href: "#courses", icon: BookOpen },
+    { name: "Pricing", href: "#pricing", icon: DollarSign },
+    { name: "Contact", href: "#contact", icon: MessageCircle },
   ]
 
   return (
     <>
       <header
-        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-          scrolled ? "bg-slate-900/95 backdrop-blur-md shadow-lg border-b border-purple-500/20" : "bg-transparent"
+        className={`fixed top-0 w-full z-50 transition-colors duration-200 ${
+          scrolled ? "bg-slate-900/95 border-b border-purple-500/20" : "bg-transparent"
         }`}
       >
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-20 lg:h-24">
+          <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
-            <Link href="/" className="flex items-center space-x-3 group z-50">
-              <div className="relative w-12 h-12 lg:w-14 lg:h-14 overflow-hidden bg-white rounded-xl shadow-md group-hover:shadow-purple-500/20 transition-all duration-300 p-1.5">
+            <Link href="/" className="flex items-center space-x-2 lg:space-x-3">
+              <div className="w-10 h-10 lg:w-12 lg:h-12 bg-white rounded-lg p-1.5 shadow-sm">
                 <Image
                   src="/logo.jpeg"
                   alt="Bursa Trading Academy"
-                  width={56}
-                  height={56}
+                  width={48}
+                  height={48}
                   className="w-full h-full object-contain"
                 />
               </div>
               <div className="hidden sm:block">
-                <h1 className="text-lg lg:text-xl font-bold text-white tracking-tight">Bursa Trading Academy</h1>
-                <div className="text-xs text-purple-300 font-medium">Professional Trading Education</div>
+                <h1 className="text-lg lg:text-xl font-bold text-white">Bursa Trading Academy</h1>
+                <div className="text-xs text-purple-300">Professional Trading Education</div>
               </div>
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center">
-              <ul className="flex">
-                {navItems.map((item) => (
-                  <li key={item.name}>
-                    <Link
-                      href={item.href}
-                      className="text-white/90 hover:text-white px-5 py-3 font-medium text-sm transition-all duration-200 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-gradient-to-r after:from-purple-500 after:to-blue-500 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left"
-                    >
-                      {item.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+            <nav className="hidden lg:flex items-center space-x-8">
+              {navItems.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className="text-white/90 hover:text-white px-3 py-2 font-medium text-sm transition-colors"
+                >
+                  {item.name}
+                </Link>
+              ))}
             </nav>
 
-            {/* Desktop Contact Info & CTA */}
-            <div className="hidden lg:flex items-center space-x-6">
-              <div className="flex items-center space-x-2 text-white/90 bg-white/5 px-4 py-2 rounded-full border border-white/10 hover:bg-white/10 transition-colors">
+            {/* Desktop Contact & CTA */}
+            <div className="hidden lg:flex items-center space-x-4">
+              <div className="flex items-center space-x-2 text-white/90 bg-white/10 px-3 py-2 rounded-full text-sm">
                 <Phone className="h-4 w-4 text-purple-400" />
-                <span className="text-sm font-medium">+60 11-3785 0354</span>
+                <span>+60 11-3785 0354</span>
               </div>
-              <Button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 px-6 py-2 font-semibold rounded-full shadow-lg shadow-purple-900/20 hover:shadow-purple-900/40 transition-all">
+              <Button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 px-6 py-2 rounded-full">
                 Get Started
               </Button>
             </div>
@@ -100,22 +93,22 @@ export default function Header() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden relative w-10 h-10 flex items-center justify-center rounded-lg bg-white/10 hover:bg-white/20 transition-all duration-200 z-50"
+              className="lg:hidden p-2 text-white rounded-lg"
               aria-label="Toggle menu"
             >
-              <div className="relative w-6 h-6">
+              <div className="w-6 h-6 relative">
                 <span
-                  className={`absolute top-1 left-0 w-6 h-0.5 bg-white transition-all duration-300 ${
+                  className={`absolute top-1 left-0 w-6 h-0.5 bg-white transition-all duration-200 ${
                     isOpen ? "rotate-45 top-2.5" : ""
                   }`}
                 />
                 <span
-                  className={`absolute top-2.5 left-0 w-6 h-0.5 bg-white transition-all duration-300 ${
+                  className={`absolute top-2.5 left-0 w-6 h-0.5 bg-white transition-all duration-200 ${
                     isOpen ? "opacity-0" : ""
                   }`}
                 />
                 <span
-                  className={`absolute top-4 left-0 w-6 h-0.5 bg-white transition-all duration-300 ${
+                  className={`absolute top-4 left-0 w-6 h-0.5 bg-white transition-all duration-200 ${
                     isOpen ? "-rotate-45 top-2.5" : ""
                   }`}
                 />
@@ -125,110 +118,94 @@ export default function Header() {
         </div>
       </header>
 
-      {/* Mobile Menu Overlay */}
-      <div
-        className={`lg:hidden fixed inset-0 z-40 transition-all duration-300 ${
-          isOpen ? "opacity-100 visible" : "opacity-0 invisible"
-        }`}
-      >
-        {/* Backdrop */}
-        <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsOpen(false)} />
+      {/* Mobile Menu */}
+      {isOpen && (
+        <div className="lg:hidden fixed inset-0 z-40">
+          {/* Backdrop */}
+          <div className="absolute inset-0 bg-black/50" onClick={() => setIsOpen(false)} />
 
-        {/* Mobile Menu Panel */}
-        <div
-          className={`absolute top-0 right-0 h-full w-80 max-w-[85vw] bg-slate-900 backdrop-blur-xl border-l border-purple-500/20 shadow-2xl transform transition-transform duration-300 ${
-            isOpen ? "translate-x-0" : "translate-x-full"
-          }`}
-        >
-          {/* Mobile Menu Header - Fixed Design */}
-          <div className="flex items-center justify-between p-6 bg-slate-800/50 border-b border-purple-500/20">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-white rounded-lg p-1 shadow-md">
-                <Image
-                  src="/logo.jpeg"
-                  alt="Bursa Trading Academy"
-                  width={40}
-                  height={40}
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              <div>
-                <div className="text-white font-bold text-sm">Bursa Trading</div>
-                <div className="text-purple-300 text-xs font-medium">Academy</div>
-              </div>
-            </div>
-            <button
-              onClick={() => setIsOpen(false)}
-              className="p-2 text-white/70 hover:text-white hover:bg-white/10 rounded-lg transition-colors"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
-
-          {/* Mobile Navigation */}
-          <nav className="flex-1 px-6 py-6 overflow-y-auto">
-            <ul className="space-y-1">
-              {navItems.map((item, index) => (
-                <li key={item.name}>
-                  <Link
-                    href={item.href}
-                    className="flex items-center justify-between p-4 text-white hover:text-purple-300 hover:bg-purple-500/10 rounded-xl transition-all duration-200 group"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    <div className="flex items-center space-x-4">
-                      <span className="text-lg">{item.icon}</span>
-                      <span className="font-medium">{item.name}</span>
-                    </div>
-                    <ChevronRight className="h-5 w-5 text-purple-400 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          {/* Mobile Contact & CTA */}
-          <div className="p-6 bg-slate-800/30 border-t border-purple-500/20 space-y-4">
-            {/* Contact Info */}
-            <div className="space-y-3">
-              <div className="flex items-center space-x-3 p-3 bg-purple-500/10 rounded-lg border border-purple-500/20">
-                <Phone className="h-5 w-5 text-purple-400" />
+          {/* Menu Panel */}
+          <div className="absolute top-0 right-0 h-full w-72 bg-slate-900 shadow-xl">
+            {/* Header */}
+            <div className="flex items-center justify-between p-4 border-b border-slate-700">
+              <div className="flex items-center space-x-3">
+                <div className="w-8 h-8 bg-white rounded-lg p-1">
+                  <Image
+                    src="/logo.jpeg"
+                    alt="Bursa Trading Academy"
+                    width={32}
+                    height={32}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
                 <div>
-                  <div className="text-white text-sm font-medium">+60 11-3785 0354</div>
-                  <div className="text-white/60 text-xs">Call us anytime</div>
+                  <div className="text-white font-semibold text-sm">Bursa Trading</div>
+                  <div className="text-purple-300 text-xs">Academy</div>
                 </div>
               </div>
-
-              <div className="flex items-center space-x-3 p-3 bg-blue-500/10 rounded-lg border border-blue-500/20">
-                <Mail className="h-5 w-5 text-blue-400" />
-                <div>
-                  <div className="text-white text-sm font-medium">bursatradingacademy@gmail.com</div>
-                  <div className="text-white/60 text-xs">Send us an email</div>
-                </div>
-              </div>
+              <button onClick={() => setIsOpen(false)} className="p-1 text-white/70 hover:text-white">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
             </div>
 
-            {/* CTA Buttons */}
-            <div className="space-y-3">
+            {/* Navigation */}
+            <nav className="p-4">
+              <ul className="space-y-2">
+                {navItems.map((item) => {
+                  const IconComponent = item.icon
+                  return (
+                    <li key={item.name}>
+                      <Link
+                        href={item.href}
+                        className="flex items-center space-x-3 p-3 text-white hover:bg-purple-600/20 rounded-lg transition-colors"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        <IconComponent className="h-5 w-5 text-purple-400" />
+                        <span className="font-medium">{item.name}</span>
+                      </Link>
+                    </li>
+                  )
+                })}
+              </ul>
+            </nav>
+
+            {/* Contact & CTA */}
+            <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-slate-700 space-y-4">
+              {/* Contact Info */}
+              <div className="space-y-3">
+                <a href="tel:+60113785354" className="flex items-center space-x-3 p-3 bg-purple-600/10 rounded-lg">
+                  <Phone className="h-4 w-4 text-purple-400" />
+                  <div>
+                    <div className="text-white text-sm font-medium">+60 11-3785 0354</div>
+                    <div className="text-white/60 text-xs">Tap to call</div>
+                  </div>
+                </a>
+
+                <a
+                  href="mailto:bursatradingacademy@gmail.com"
+                  className="flex items-center space-x-3 p-3 bg-blue-600/10 rounded-lg"
+                >
+                  <Mail className="h-4 w-4 text-blue-400" />
+                  <div>
+                    <div className="text-white text-sm font-medium">Email Us</div>
+                    <div className="text-white/60 text-xs">Send us a message</div>
+                  </div>
+                </a>
+              </div>
+
+              {/* CTA Button */}
               <Button
-                className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 rounded-xl py-4 font-semibold text-base shadow-lg"
+                className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 rounded-lg py-3"
                 onClick={() => setIsOpen(false)}
               >
                 Get Started Today
               </Button>
-
-              <Button
-                variant="outline"
-                className="w-full border-purple-500/30 text-white hover:bg-purple-500/10 rounded-xl py-3"
-                onClick={() => setIsOpen(false)}
-              >
-                Free Consultation
-              </Button>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   )
 }

@@ -19,7 +19,6 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  // Prevent body scroll when mobile menu is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden"
@@ -40,18 +39,31 @@ export default function Header() {
     { name: "Contact", href: "#contact", icon: MessageCircle },
   ]
 
+  const handleNavClick = (href: string) => {
+    setIsOpen(false)
+    if (href.startsWith("#")) {
+      // For anchor links, smooth scroll
+      setTimeout(() => {
+        const element = document.querySelector(href)
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" })
+        }
+      }, 100)
+    }
+  }
+
   return (
     <>
       <header
-        className={`fixed top-0 w-full z-50 transition-colors duration-200 ${
-          scrolled ? "bg-slate-900/95 border-b border-purple-500/20" : "bg-transparent"
+        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+          scrolled ? "bg-slate-900/95 backdrop-blur-md border-b border-purple-500/30" : "bg-transparent"
         }`}
       >
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
             <Link href="/" className="flex items-center space-x-2 lg:space-x-3">
-              <div className="w-10 h-10 lg:w-12 lg:h-12 bg-white rounded-lg p-1.5 shadow-sm">
+              <div className="w-10 h-10 lg:w-12 lg:h-12 bg-white rounded-lg p-1.5">
                 <Image
                   src="/logo.jpeg"
                   alt="Bursa Trading Academy"
@@ -73,6 +85,7 @@ export default function Header() {
                   key={item.name}
                   href={item.href}
                   className="text-white/90 hover:text-white px-3 py-2 font-medium text-sm transition-colors"
+                  onClick={() => handleNavClick(item.href)}
                 >
                   {item.name}
                 </Link>
@@ -81,11 +94,11 @@ export default function Header() {
 
             {/* Desktop Contact & CTA */}
             <div className="hidden lg:flex items-center space-x-4">
-              <div className="flex items-center space-x-2 text-white/90 bg-white/10 px-3 py-2 rounded-full text-sm">
+              <div className="flex items-center space-x-2 text-white/90 bg-slate-800/80 backdrop-blur-sm px-3 py-2 rounded-full text-sm">
                 <Phone className="h-4 w-4 text-purple-400" />
                 <span>+60 11-3785 0354</span>
               </div>
-              <Button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 px-6 py-2 rounded-full">
+              <Button className="bg-purple-600 hover:bg-purple-700 px-6 py-2 rounded-full text-white">
                 Get Started
               </Button>
             </div>
@@ -93,22 +106,22 @@ export default function Header() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden p-2 text-white rounded-lg"
+              className="lg:hidden p-2 text-white relative z-50"
               aria-label="Toggle menu"
             >
               <div className="w-6 h-6 relative">
                 <span
-                  className={`absolute top-1 left-0 w-6 h-0.5 bg-white transition-all duration-200 ${
+                  className={`absolute top-1 left-0 w-6 h-0.5 bg-white transition-all duration-300 ${
                     isOpen ? "rotate-45 top-2.5" : ""
                   }`}
                 />
                 <span
-                  className={`absolute top-2.5 left-0 w-6 h-0.5 bg-white transition-all duration-200 ${
+                  className={`absolute top-2.5 left-0 w-6 h-0.5 bg-white transition-all duration-300 ${
                     isOpen ? "opacity-0" : ""
                   }`}
                 />
                 <span
-                  className={`absolute top-4 left-0 w-6 h-0.5 bg-white transition-all duration-200 ${
+                  className={`absolute top-4 left-0 w-6 h-0.5 bg-white transition-all duration-300 ${
                     isOpen ? "-rotate-45 top-2.5" : ""
                   }`}
                 />
@@ -118,40 +131,32 @@ export default function Header() {
         </div>
       </header>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Overlay */}
       {isOpen && (
         <div className="lg:hidden fixed inset-0 z-40">
-          {/* Backdrop */}
-          <div className="absolute inset-0 bg-black/50" onClick={() => setIsOpen(false)} />
-
-          {/* Menu Panel */}
-          <div className="absolute top-0 right-0 h-full w-72 bg-slate-900 shadow-xl">
-            {/* Header */}
-            <div className="flex items-center justify-between p-4 border-b border-slate-700">
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsOpen(false)} />
+          <div className="absolute top-0 right-0 h-full w-80 max-w-[85vw] bg-slate-900/95 backdrop-blur-md border-l border-slate-700">
+            {/* Mobile Menu Header */}
+            <div className="flex items-center justify-between p-6 border-b border-slate-700">
               <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 bg-white rounded-lg p-1">
+                <div className="w-10 h-10 bg-white rounded-lg p-1.5">
                   <Image
                     src="/logo.jpeg"
                     alt="Bursa Trading Academy"
-                    width={32}
-                    height={32}
+                    width={40}
+                    height={40}
                     className="w-full h-full object-contain"
                   />
                 </div>
                 <div>
-                  <div className="text-white font-semibold text-sm">Bursa Trading</div>
-                  <div className="text-purple-300 text-xs">Academy</div>
+                  <div className="text-white font-semibold">Bursa Trading</div>
+                  <div className="text-purple-300 text-sm">Academy</div>
                 </div>
               </div>
-              <button onClick={() => setIsOpen(false)} className="p-1 text-white/70 hover:text-white">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
             </div>
 
-            {/* Navigation */}
-            <nav className="p-4">
+            {/* Navigation Links */}
+            <nav className="p-6">
               <ul className="space-y-2">
                 {navItems.map((item) => {
                   const IconComponent = item.icon
@@ -159,10 +164,10 @@ export default function Header() {
                     <li key={item.name}>
                       <Link
                         href={item.href}
-                        className="flex items-center space-x-3 p-3 text-white hover:bg-purple-600/20 rounded-lg transition-colors"
-                        onClick={() => setIsOpen(false)}
+                        className="flex items-center space-x-4 p-4 text-white hover:bg-slate-800/50 rounded-xl transition-all duration-200 group"
+                        onClick={() => handleNavClick(item.href)}
                       >
-                        <IconComponent className="h-5 w-5 text-purple-400" />
+                        <IconComponent className="h-5 w-5 text-purple-400 group-hover:text-purple-300" />
                         <span className="font-medium">{item.name}</span>
                       </Link>
                     </li>
@@ -171,33 +176,34 @@ export default function Header() {
               </ul>
             </nav>
 
-            {/* Contact & CTA */}
-            <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-slate-700 space-y-4">
-              {/* Contact Info */}
+            {/* Contact & CTA Section */}
+            <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-slate-700 space-y-4">
               <div className="space-y-3">
-                <a href="tel:+60113785354" className="flex items-center space-x-3 p-3 bg-purple-600/10 rounded-lg">
-                  <Phone className="h-4 w-4 text-purple-400" />
+                <a
+                  href="tel:+60113785354"
+                  className="flex items-center space-x-4 p-4 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors"
+                >
+                  <Phone className="h-5 w-5 text-purple-400" />
                   <div>
-                    <div className="text-white text-sm font-medium">+60 11-3785 0354</div>
-                    <div className="text-white/60 text-xs">Tap to call</div>
+                    <div className="text-white font-medium">+60 11-3785 0354</div>
+                    <div className="text-white/60 text-sm">Tap to call</div>
                   </div>
                 </a>
 
                 <a
                   href="mailto:bursatradingacademy@gmail.com"
-                  className="flex items-center space-x-3 p-3 bg-blue-600/10 rounded-lg"
+                  className="flex items-center space-x-4 p-4 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors"
                 >
-                  <Mail className="h-4 w-4 text-blue-400" />
+                  <Mail className="h-5 w-5 text-blue-400" />
                   <div>
-                    <div className="text-white text-sm font-medium">Email Us</div>
-                    <div className="text-white/60 text-xs">Send us a message</div>
+                    <div className="text-white font-medium">Email Us</div>
+                    <div className="text-white/60 text-sm">Get in touch</div>
                   </div>
                 </a>
               </div>
 
-              {/* CTA Button */}
               <Button
-                className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 rounded-lg py-3"
+                className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 rounded-xl py-4 text-white font-medium"
                 onClick={() => setIsOpen(false)}
               >
                 Get Started Today

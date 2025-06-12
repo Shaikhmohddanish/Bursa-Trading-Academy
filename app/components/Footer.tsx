@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer id="contact" className="bg-black/40 backdrop-blur-sm border-t border-white/10">
       <div className="container mx-auto px-4 py-16">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* Company Info */}
           <div className="space-y-6">
             <Link href="/" className="flex items-center space-x-3">
@@ -65,52 +65,20 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Courses */}
-          <div className="space-y-6">
-            <h3 className="text-lg font-semibold text-white">Our Courses</h3>
-            <ul className="space-y-3">
-              <li>
-                <Link href="#" className="text-white/70 hover:text-purple-400 transition-colors">
-                  KLSE Full Course
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-white/70 hover:text-purple-400 transition-colors">
-                  HSI Full Course
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-white/70 hover:text-purple-400 transition-colors">
-                  Currency & Commodity
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-white/70 hover:text-purple-400 transition-colors">
-                  US & SGX Course
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-white/70 hover:text-purple-400 transition-colors">
-                  All-in-one Course
-                </Link>
-              </li>
-            </ul>
-          </div>
-
           {/* Contact Info */}
           <div className="space-y-6">
             <h3 className="text-lg font-semibold text-white">Contact Us</h3>
             <div className="space-y-4">
               <div className="flex items-center space-x-3">
-                <Phone className="h-5 w-5 text-purple-400" />
+                <Phone className="h-5 w-5 text-purple-400 flex-shrink-0" />
                 <span className="text-white/70">+60 11-3785 0354</span>
               </div>
               <div className="flex items-center space-x-3">
-                <Mail className="h-5 w-5 text-purple-400" />
-                <span className="text-white/70">bursatradingacademy@gmail.com</span>
+                <Mail className="h-5 w-5 text-purple-400 flex-shrink-0" />
+                <span className="text-white/70 break-all">bursatradingacademy@gmail.com</span>
               </div>
               <div className="flex items-center space-x-3">
-                <MapPin className="h-5 w-5 text-purple-400" />
+                <MapPin className="h-5 w-5 text-purple-400 flex-shrink-0" />
                 <span className="text-white/70">Malaysia</span>
               </div>
             </div>
@@ -127,9 +95,6 @@ export default function Footer() {
               </Link>
               <Link href="/terms" className="text-white/60 hover:text-purple-400 transition-colors">
                 Terms of Service
-              </Link>
-              <Link href="/disclaimer" className="text-white/60 hover:text-purple-400 transition-colors">
-                Disclaimer
               </Link>
             </div>
           </div>

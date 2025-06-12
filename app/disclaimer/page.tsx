@@ -1,13 +1,23 @@
+"use client"
+
+import { useEffect } from "react"
 import Link from "next/link"
 import { ArrowLeft, AlertTriangle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Alert, AlertDescription } from "@/components/ui/alert"
+import Header from "../components/Header"
+import Footer from "../components/Footer"
 
 export default function DisclaimerPage() {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-      <div className="container mx-auto px-4 py-20">
+      <Header />
+      <div className="container mx-auto px-4 py-20 pt-32">
         <div className="mb-8">
           <Link href="/">
             <Button variant="ghost" className="text-white hover:text-purple-400 hover:bg-white/10">
@@ -183,6 +193,7 @@ export default function DisclaimerPage() {
           </CardContent>
         </Card>
       </div>
+      <Footer />
     </div>
   )
 }

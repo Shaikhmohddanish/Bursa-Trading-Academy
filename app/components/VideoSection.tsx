@@ -23,33 +23,13 @@ export default function VideoSection() {
           <div className="relative">
             <div className="bg-slate-800 rounded-2xl p-8 border border-slate-700">
               <div className="relative aspect-video rounded-xl overflow-hidden bg-slate-900">
-                <div
-                  className="absolute inset-0 bg-cover bg-center"
-                  style={{
-                    backgroundImage:
-                      "url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-D7edsVvBix9cUeAnEv8x26YXF3FD1d.png')",
-                  }}
-                >
-                  <div className="absolute inset-0 bg-black/30" />
-
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <Button
-                      size="lg"
-                      className="bg-white/20 hover:bg-white/30 border border-white/30 text-white rounded-full w-20 h-20 p-0"
-                      onClick={() => setIsPlaying(!isPlaying)}
-                    >
-                      {isPlaying ? <Pause className="h-8 w-8" /> : <Play className="h-8 w-8 ml-1" />}
-                    </Button>
-                  </div>
-
-                  <div className="absolute bottom-4 left-4 bg-black/50 rounded-lg px-3 py-1">
-                    <span className="text-white text-sm font-medium">0:10</span>
-                  </div>
-
-                  <div className="absolute top-4 left-4 bg-black/50 rounded-lg px-4 py-2">
-                    <span className="text-white font-semibold">Live Market Data</span>
-                  </div>
-                </div>
+                <video
+                  src="/video/video.mp4"
+                  className="w-full h-full object-cover"
+                  controls
+                  autoPlay
+                  onEnded={() => setIsPlaying(false)}
+                ></video>
               </div>
 
               <div className="mt-6 text-center">

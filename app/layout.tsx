@@ -18,7 +18,19 @@ export const metadata: Metadata = {
     siteName: "Bursa Trading Academy",
     type: "website",
   },
-    generator: 'v0.dev'
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/logo.jpeg", type: "image/jpeg" }
+    ],
+    shortcut: [
+      { url: "/favicon.svg", type: "image/svg+xml" }
+    ],
+    apple: [
+      { url: "/logo.jpeg", type: "image/jpeg" }
+    ]
+  },
+  generator: 'v0.dev'
 }
 
 export default function RootLayout({

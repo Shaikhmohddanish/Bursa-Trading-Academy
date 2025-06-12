@@ -55,7 +55,7 @@ export default function HeroSection() {
                 Start Your Journey
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-              <Button size="lg" variant="outline" className="border-white/20 text-white hover:bg-slate-800 px-6 py-5">
+              <Button size="lg" variant="outline" className="border-white/20 text-black hover:bg-slate-800 hover:text-white px-6 py-5">
                 Free Consultation
               </Button>
             </div>

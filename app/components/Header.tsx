@@ -3,31 +3,32 @@
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { Phone, Mail, Home, Info, BookOpen, DollarSign, MessageCircle } from "lucide-react"
+import { Phone, Mail, Home, Info, BookOpen, DollarSign, MessageCircle, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
+  // Scroll shadow
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20)
-    }
-
+    const handleScroll = () => setScrolled(window.scrollY > 20)
     window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  // Prevent body scroll when mobile menu open
   useEffect(() => {
-    if (isOpen) {
+    if (isOpen && typeof window !== "undefined") {
       document.body.style.overflow = "hidden"
+      document.body.style.touchAction = "none" // for iOS
     } else {
-      document.body.style.overflow = "unset"
+      document.body.style.overflow = ""
+      document.body.style.touchAction = ""
     }
-
     return () => {
-      document.body.style.overflow = "unset"
+      document.body.style.overflow = ""
+      document.body.style.touchAction = ""
     }
   }, [isOpen])
 
@@ -39,16 +40,20 @@ export default function Header() {
     { name: "Contact", href: "#contact", icon: MessageCircle },
   ]
 
+  // Smooth scroll for anchor links
   const handleNavClick = (href: string) => {
     setIsOpen(false)
     if (href.startsWith("#")) {
-      // For anchor links, smooth scroll
-      setTimeout(() => {
-        const element = document.querySelector(href)
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" })
-        }
-      }, 100)
+      // If already on home page, smooth scroll
+      if (window.location.pathname === "/") {
+        setTimeout(() => {
+          const element = document.querySelector(href)
+          if (element) element.scrollIntoView({ behavior: "smooth" })
+        }, 100)
+      } else {
+        // If not on home, go to home with hash
+        window.location.href = `/${href}`
+      }
     }
   }
 
@@ -94,81 +99,101 @@ export default function Header() {
 
             {/* Desktop Contact & CTA */}
             <div className="hidden lg:flex items-center space-x-4">
-              <div className="flex items-center space-x-2 text-white/90 bg-slate-800/80 backdrop-blur-sm px-3 py-2 rounded-full text-sm">
-                <Phone className="h-4 w-4 text-purple-400" />
-                <span>+60 11-3785 0354</span>
-              </div>
-              <Button className="bg-purple-600 hover:bg-purple-700 px-6 py-2 rounded-full text-white">
-                Get Started
-              </Button>
+              <a href="tel:+60113785354">
+                <Button className="flex items-center space-x-2 bg-purple-600 hover:bg-purple-700 px-6 py-2 rounded-full text-white text-sm">
+                  <Phone className="h-4 w-4 text-purple-400" />
+                  <span>+60 11-3785 0354</span>
+                </Button>
+              </a>
             </div>
 
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden p-2 text-white relative z-50"
-              aria-label="Toggle menu"
-            >
-              <div className="w-6 h-6 relative">
-                <span
-                  className={`absolute top-1 left-0 w-6 h-0.5 bg-white transition-all duration-300 ${
-                    isOpen ? "rotate-45 top-2.5" : ""
-                  }`}
-                />
-                <span
-                  className={`absolute top-2.5 left-0 w-6 h-0.5 bg-white transition-all duration-300 ${
-                    isOpen ? "opacity-0" : ""
-                  }`}
-                />
-                <span
-                  className={`absolute top-4 left-0 w-6 h-0.5 bg-white transition-all duration-300 ${
-                    isOpen ? "-rotate-45 top-2.5" : ""
-                  }`}
-                />
-              </div>
-            </button>
+            {/* Mobile Menu Button (Hamburger - only show if menu closed) */}
+            {!isOpen && (
+              <button
+                onClick={() => setIsOpen(true)}
+                className="lg:hidden p-2 text-white relative z-60"
+                aria-label="Open menu"
+                aria-expanded={isOpen}
+                aria-controls="mobile-menu"
+              >
+                <div className="w-6 h-6 relative">
+                  <span className="absolute top-1 left-0 w-6 h-0.5 bg-white transition-all duration-300" />
+                  <span className="absolute top-2.5 left-0 w-6 h-0.5 bg-white transition-all duration-300" />
+                  <span className="absolute top-4 left-0 w-6 h-0.5 bg-white transition-all duration-300" />
+                </div>
+              </button>
+            )}
           </div>
         </div>
       </header>
 
       {/* Mobile Menu Overlay */}
       {isOpen && (
-        <div className="lg:hidden fixed inset-0 z-40">
-          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsOpen(false)} />
-          <div className="absolute top-0 right-0 h-full w-80 max-w-[85vw] bg-slate-900/95 backdrop-blur-md border-l border-slate-700">
+        <div
+          className="lg:hidden fixed inset-0 z-50"
+          aria-modal="true"
+          role="dialog"
+          id="mobile-menu"
+        >
+          {/* Overlay */}
+          <div
+            className="absolute inset-0 bg-black/70 backdrop-blur-sm transition-opacity duration-300 animate-fadeIn"
+            onClick={() => setIsOpen(false)}
+            tabIndex={-1}
+            aria-hidden="true"
+          />
+
+          {/* Mobile Menu Panel */}
+          <div className="absolute top-0 right-0 h-full w-80 max-w-[90vw] bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 shadow-2xl border-l border-purple-700/40 rounded-l-2xl animate-slideIn z-60">
+            {/* X Button in the drawer */}
+            <button
+              className="absolute top-4 right-4 z-70 text-white bg-slate-800/70 rounded-full p-2 hover:bg-purple-700/40 transition"
+              aria-label="Close menu"
+              onClick={() => setIsOpen(false)}
+              type="button"
+            >
+              <X className="h-6 w-6" />
+            </button>
+
             {/* Mobile Menu Header */}
             <div className="flex items-center justify-between p-6 border-b border-slate-700">
               <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-white rounded-lg p-1.5">
+                <div className="w-12 h-12 bg-white rounded-xl p-2 shadow-md">
                   <Image
                     src="/logo.jpeg"
                     alt="Bursa Trading Academy"
-                    width={40}
-                    height={40}
+                    width={48}
+                    height={48}
                     className="w-full h-full object-contain"
                   />
                 </div>
                 <div>
-                  <div className="text-white font-semibold">Bursa Trading</div>
-                  <div className="text-purple-300 text-sm">Academy</div>
+                  <div className="text-white font-bold text-lg leading-tight">Bursa Trading</div>
+                  <div className="text-purple-300 text-xs font-medium tracking-wide">Academy</div>
                 </div>
               </div>
             </div>
 
             {/* Navigation Links */}
             <nav className="p-6">
-              <ul className="space-y-2">
+              <ul className="space-y-3">
                 {navItems.map((item) => {
                   const IconComponent = item.icon
                   return (
                     <li key={item.name}>
                       <Link
                         href={item.href}
-                        className="flex items-center space-x-4 p-4 text-white hover:bg-slate-800/50 rounded-xl transition-all duration-200 group"
-                        onClick={() => handleNavClick(item.href)}
+                        className="flex items-center space-x-4 p-4 bg-slate-800/60 hover:bg-purple-700/40 rounded-xl text-white font-medium shadow-sm transition-all duration-200 group"
+                        onClick={(e) => {
+                          handleNavClick(item.href)
+                          // If it's an anchor, prevent default to avoid instant jump
+                          if (item.href.startsWith("#")) {
+                            e.preventDefault()
+                          }
+                        }}
                       >
-                        <IconComponent className="h-5 w-5 text-purple-400 group-hover:text-purple-300" />
-                        <span className="font-medium">{item.name}</span>
+                        <IconComponent className="h-5 w-5 text-purple-400 group-hover:text-white transition-colors" />
+                        <span className="font-medium text-base tracking-wide group-hover:text-white transition-colors">{item.name}</span>
                       </Link>
                     </li>
                   )
@@ -177,37 +202,29 @@ export default function Header() {
             </nav>
 
             {/* Contact & CTA Section */}
-            <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-slate-700 space-y-4">
+            <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-slate-700 bg-slate-900/80 rounded-b-2xl space-y-4 shadow-inner">
               <div className="space-y-3">
                 <a
                   href="tel:+60113785354"
-                  className="flex items-center space-x-4 p-4 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors"
+                  className="flex items-center space-x-4 p-4 bg-slate-800/70 hover:bg-purple-700/40 rounded-xl transition-colors text-white shadow-sm"
                 >
                   <Phone className="h-5 w-5 text-purple-400" />
                   <div>
                     <div className="text-white font-medium">+60 11-3785 0354</div>
-                    <div className="text-white/60 text-sm">Tap to call</div>
+                    <div className="text-white/60 text-xs">Tap to call</div>
                   </div>
                 </a>
-
                 <a
                   href="mailto:bursatradingacademy@gmail.com"
-                  className="flex items-center space-x-4 p-4 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors"
+                  className="flex items-center space-x-4 p-4 bg-slate-800/70 hover:bg-purple-700/40 rounded-xl transition-colors text-white shadow-sm"
                 >
                   <Mail className="h-5 w-5 text-blue-400" />
                   <div>
                     <div className="text-white font-medium">Email Us</div>
-                    <div className="text-white/60 text-sm">Get in touch</div>
+                    <div className="text-white/60 text-xs">Get in touch</div>
                   </div>
                 </a>
               </div>
-
-              <Button
-                className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 rounded-xl py-4 text-white font-medium"
-                onClick={() => setIsOpen(false)}
-              >
-                Get Started Today
-              </Button>
             </div>
           </div>
         </div>

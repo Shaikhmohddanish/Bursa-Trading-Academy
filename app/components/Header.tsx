@@ -5,6 +5,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { Phone, Mail, Home, Info, BookOpen, DollarSign, MessageCircle, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { WhatsappIcon } from "@/components/ui/WhatsappIcon"
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
@@ -103,10 +104,10 @@ export default function Header() {
 
             {/* Desktop Contact & CTA */}
             <div className="hidden lg:flex items-center space-x-4">
-              <a href="tel:+60142333436">
+              <a href="https://wa.me/60142333436?text=Hi%2C%20I%20would%20like%20to%20know%20more%20about%20your%20trading%20academy." target="_blank" rel="noopener noreferrer">
                 <Button className="flex items-center space-x-2 bg-purple-600 hover:bg-purple-700 px-6 py-2 rounded-full text-white text-sm">
-                  <Phone className="h-4 w-4 text-purple-400" />
-                  <span>+60 14-233 3436</span>
+                  <WhatsappIcon className="h-5 w-5 text-white" />
+                  <span>Contact us now</span>
                 </Button>
               </a>
             </div>
@@ -208,13 +209,15 @@ export default function Header() {
             <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-slate-700 bg-slate-900/80 rounded-b-2xl space-y-4 shadow-inner">
               <div className="space-y-3">
                 <a
-                  href="tel:+60142333436"
-                  className="flex items-center space-x-4 p-4 bg-slate-800/70 hover:bg-purple-700/40 rounded-xl transition-colors text-white shadow-sm"
+                  href="https://wa.me/60142333436?text=Hi%2C%20I%20would%20like%20to%20know%20more%20about%20your%20trading%20academy."
+                  className="flex items-center space-x-4 p-4 bg-green-700/80 hover:bg-green-800/90 rounded-xl transition-colors text-white shadow-sm"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  <Phone className="h-5 w-5 text-purple-400" />
+                  <WhatsappIcon className="h-5 w-5 text-white" />
                   <div>
-                    <div className="text-white font-medium">+60 14-233 3436</div>
-                    <div className="text-white/60 text-xs">Tap to call</div>
+                    <div className="text-white font-medium">Contact us now</div>
+                    <div className="text-white/60 text-xs">WhatsApp</div>
                   </div>
                 </a>
                 <a

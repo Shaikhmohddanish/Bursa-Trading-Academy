@@ -113,11 +113,6 @@ export default function ContactPage() {
         "You can enroll in any of our courses by clicking the 'Get Started' button on our pricing page. Our team will contact you within 24 hours to guide you through the enrollment process.",
     },
     {
-      question: "Do you offer refunds?",
-      answer:
-        "All course fees are non-refundable and non-transferable unless otherwise stated. For select programs, a refund may be considered before a specified session—refer to individual program guidelines.",
-    },
-    {
       question: "How long do I have access to course materials?",
       answer:
         "All our courses come with lifetime access to the materials. You can revisit the content anytime to refresh your knowledge or deepen your understanding.",

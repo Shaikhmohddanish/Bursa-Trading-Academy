@@ -162,7 +162,7 @@ export default function Header() {
             {/* Mobile Menu Header */}
             <div className="flex items-center justify-between p-6 border-b border-slate-700">
               <div className="flex items-center space-x-3">
-                <div className="w-12 h-12 bg-white rounded-xl p-2 shadow-md">
+                <div className="w-12 h-12 rounded-xl p-2 shadow-md">
                   <Image
                     src="/logo.png"
                     alt="Bursa Trading Academy"

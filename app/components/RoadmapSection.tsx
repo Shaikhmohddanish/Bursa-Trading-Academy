@@ -26,7 +26,7 @@ export default function RoadmapSection() {
   const roadmapSteps = [
     {
       step: "1",
-      title: "Complete the Course in 30 Days",
+      title: "Complete the Course in 15 Days",
       description:
         "Learn proven trading strategies, risk management, and technical analysis with our step-by-step course designed for quick mastery in just 15 days.",
       icon: BookOpen,
@@ -60,7 +60,7 @@ export default function RoadmapSection() {
             </span>
           </h2>
           <p className="text-xl text-white/80 max-w-3xl mx-auto">
-            Our proven 3-step process takes you from beginner to confident trader in just 45 days
+            Our proven 3-step process takes you from beginner to confident trader in just 30 days
           </p>
         </div>
 

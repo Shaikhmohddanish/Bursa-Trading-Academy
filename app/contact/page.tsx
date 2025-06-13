@@ -76,13 +76,6 @@ export default function ContactPage() {
 
   const contactInfo = [
     {
-      icon: Phone,
-      title: "Phone",
-      details: "+60 14-233 3436",
-      action: "tel:+60142333436",
-      actionText: "Call Us",
-    },
-    {
       icon: Mail,
       title: "Email",
       details: "bursatradingacademy@gmail.com",
@@ -103,6 +96,13 @@ export default function ContactPage() {
       secondaryDetails: "Weekends: By appointment",
       action: "#",
       actionText: "Schedule Call",
+    },
+    {
+      icon: WhatsappIcon,
+      title: "WhatsApp",
+      details: "+60 14-233 3436",
+      action: "https://wa.me/60142333436?text=Hi%2C%20I%20would%20like%20to%20know%20more%20about%20your%20trading%20academy.",
+      actionText: "Chat on WhatsApp",
     },
   ]
 

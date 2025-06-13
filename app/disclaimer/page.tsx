@@ -183,7 +183,7 @@ export default function DisclaimerPage() {
                     </Button>
                   </Link>
                   <Link href="/terms">
-                    <Button variant="outline" className="border-white/20 text-white hover:bg-white/10">
+                    <Button variant="outline" className="border-white/20 text-black hover:bg-white/10">
                       View Terms & Conditions
                     </Button>
                   </Link>

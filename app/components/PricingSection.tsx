@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Check, Star } from "lucide-react"
+import { WhatsappIcon } from "@/components/ui/WhatsappIcon"
 
 export default function PricingSection() {
   const [isVisible, setIsVisible] = useState(false)
@@ -149,15 +150,19 @@ export default function PricingSection() {
                   ))}
                 </ul>
 
-                <a href="tel:+60113785354">
+                <a
+                  href={`https://wa.me/60142333436?text=Hi%2C%20I%20am%20interested%20in%20the%20${encodeURIComponent(plan.name)}%20(${encodeURIComponent(plan.price)}).%20Please%20share%20more%20details.`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <Button
-                    className={`w-full mt-6 ${
+                    className={`w-full mt-6 flex items-center justify-center gap-2 ${
                       plan.popular
                         ? "bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
                         : "bg-white/10 hover:bg-white/20 text-white"
                     }`}
                   >
-                    Get Started
+                    <span>Buy Now</span>
                   </Button>
                 </a>
               </CardContent>

@@ -12,8 +12,8 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Alert, AlertDescription } from "@/components/ui/alert"
+import { WhatsappIcon } from "@/components/ui/WhatsappIcon"
 
 // Form validation schema
 const formSchema = z.object({
@@ -29,7 +29,6 @@ type FormValues = z.infer<typeof formSchema>
 export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
-  const [activeTab, setActiveTab] = useState("general")
 
   // Initialize form
   const form = useForm<FormValues>({
@@ -79,8 +78,8 @@ export default function ContactPage() {
     {
       icon: Phone,
       title: "Phone",
-      details: "+60 11-3785 0354",
-      action: "tel:+60113785354",
+      details: "+60 14-233 3436",
+      action: "tel:+60142333436",
       actionText: "Call Us",
     },
     {
@@ -147,14 +146,6 @@ export default function ContactPage() {
               Have questions about our courses or need personalized guidance? Our team is here to help you on your
               trading journey.
             </p>
-
-            <Tabs defaultValue="general" className="w-full" onValueChange={setActiveTab}>
-              <TabsList className="grid grid-cols-3 max-w-md mx-auto bg-slate-800/50">
-                <TabsTrigger value="general">General Inquiry</TabsTrigger>
-                <TabsTrigger value="support">Technical Support</TabsTrigger>
-                <TabsTrigger value="business">Business</TabsTrigger>
-              </TabsList>
-            </Tabs>
           </div>
         </section>
 
@@ -253,13 +244,7 @@ export default function ContactPage() {
                                 <FormLabel className="text-white">Subject</FormLabel>
                                 <FormControl>
                                   <Input
-                                    placeholder={
-                                      activeTab === "general"
-                                        ? "Course Inquiry"
-                                        : activeTab === "support"
-                                          ? "Technical Issue"
-                                          : "Business Proposal"
-                                    }
+                                    placeholder="Course Inquiry"
                                     className="bg-slate-800/50 border-slate-700 text-white"
                                     {...field}
                                   />
@@ -367,25 +352,6 @@ export default function ContactPage() {
                     ))}
                   </div>
                 </div>
-
-                {/* Map */}
-                <Card className="bg-white/5 backdrop-blur-sm border-white/10">
-                  <CardContent className="p-0">
-                    <div className="aspect-video w-full">
-                      <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127482.6912326439!2d101.61694190722653!3d3.139020299999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc49c701efeae7%3A0xf4d98e5b2f1c287d!2sKuala%20Lumpur%2C%20Federal%20Territory%20of%20Kuala%20Lumpur%2C%20Malaysia!5e0!3m2!1sen!2sus!4v1654321234567!5m2!1sen!2sus"
-                        width="100%"
-                        height="100%"
-                        style={{ border: 0 }}
-                        allowFullScreen
-                        loading="lazy"
-                        referrerPolicy="no-referrer-when-downgrade"
-                        title="Bursa Trading Academy Location"
-                        className="rounded-b-lg"
-                      ></iframe>
-                    </div>
-                  </CardContent>
-                </Card>
               </div>
             </div>
           </div>
@@ -409,9 +375,22 @@ export default function ContactPage() {
 
             <div className="mt-10 text-center">
               <p className="text-white/80 mb-6">Still have questions? Our team is ready to assist you.</p>
-              <Button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-6">
-                Schedule a Consultation
-              </Button>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a
+                  href="https://wa.me/60142333436?text=Hi%2C%20I%20would%20like%20to%20know%20more%20about%20your%20trading%20academy."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center"
+                >
+                  <Button
+                    className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-8 py-6"
+                    type="button"
+                  >
+                    <span>WhatsApp</span>
+                    <WhatsappIcon className="w-6 h-6" />
+                  </Button>
+                </a>
+              </div>
             </div>
           </div>
         </section>

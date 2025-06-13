@@ -32,6 +32,7 @@ export default function PricingSection() {
       price: "RM2999",
       modules: "11 Module",
       popular: false,
+      purchased: true,
       features: [
         "Complete KLSE Trading Fundamentals",
         "Technical Analysis Mastery",
@@ -46,6 +47,7 @@ export default function PricingSection() {
       price: "RM2499",
       modules: "8 Module",
       popular: false,
+      purchased: true,
       features: [
         "Hong Kong Stock Index Trading",
         "Advanced Chart Patterns",
@@ -60,6 +62,7 @@ export default function PricingSection() {
       price: "RM2999",
       modules: "9 Module",
       popular: false,
+      purchased: false,
       features: [
         "Forex Trading Strategies",
         "Commodity Market Analysis",
@@ -74,6 +77,7 @@ export default function PricingSection() {
       price: "RM2499",
       modules: "9 Module",
       popular: false,
+      purchased: false,
       features: [
         "US & Singapore Markets",
         "International Trading",
@@ -88,6 +92,7 @@ export default function PricingSection() {
       price: "RM9999",
       modules: "37 Module",
       popular: true,
+      purchased: false,
       features: [
         "All Courses Included",
         "Complete Trading Education",
@@ -130,6 +135,15 @@ export default function PricingSection() {
                   <Badge className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-4 py-1">
                     <Star className="h-3 w-3 mr-1" />
                     Most Popular
+                  </Badge>
+                </div>
+              )}
+
+              {plan.purchased && (
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                  <Badge className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-4 py-1">
+                    <Star className="h-3 w-3 mr-1" />
+                    Most Purchased
                   </Badge>
                 </div>
               )}

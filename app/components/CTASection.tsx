@@ -94,7 +94,7 @@ export default function CTASection() {
             <div className="grid grid-cols-3 gap-4 pt-8">
               <div className="text-center">
                 <Clock className="h-8 w-8 text-purple-400 mx-auto mb-2" />
-                <div className="text-2xl font-bold text-white">45</div>
+                <div className="text-2xl font-bold text-white">30</div>
                 <div className="text-sm text-white/60">Days Program</div>
               </div>
               <div className="text-center">

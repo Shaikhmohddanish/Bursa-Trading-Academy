@@ -72,7 +72,7 @@ export default function Header() {
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
             <Link href="/" className="flex items-center space-x-2 lg:space-x-3">
-              <div className="w-10 h-10 lg:w-12 lg:h-12 bg-white rounded-lg p-1.5">
+              <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-lg p-1.5">
                 <Image
                   src="/logo.png"
                   alt="Bursa Trading Academy"

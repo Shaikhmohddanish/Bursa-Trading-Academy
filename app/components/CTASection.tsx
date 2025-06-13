@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Clock, Users, TrendingUp } from "lucide-react"
+import { WhatsappIcon } from "@/components/ui/WhatsappIcon"
+import Link from "next/link"
 
 export default function CTASection() {
   const [isVisible, setIsVisible] = useState(false)
@@ -62,7 +64,7 @@ export default function CTASection() {
 
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <a href="tel:+60113785354">
+              <Link href="/contact" passHref legacyBehavior>
                 <Button
                   size="lg"
                   className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-lg px-8 py-6 w-full sm:w-auto"
@@ -70,13 +72,19 @@ export default function CTASection() {
                   Start Your Journey
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
-              </a>
-              <a href="tel:+60113785354">
+              </Link>
+              <a
+                href="https://wa.me/60142333436?text=Hi%2C%20I%20am%20interested%20in%20a%20free%20consultation%20with%20Bursa%20Trading%20Academy."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto"
+              >
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-white/20 text-black hover:bg-white/10 hover:text-white text-lg px-8 py-6 w-full sm:w-auto"
+                  className="border-white/20 text-black hover:bg-white/10 hover:text-white text-lg px-8 py-6 flex items-center justify-center w-full sm:w-auto"
                 >
+                  <WhatsappIcon className="h-5 w-5 mr-2 text-green-500" />
                   Free Consultation
                 </Button>
               </a>

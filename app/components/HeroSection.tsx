@@ -2,6 +2,8 @@
 
 import { Button } from "@/components/ui/button"
 import { ArrowRight, TrendingUp, Users, Award } from "lucide-react"
+import { WhatsappIcon } from "@/components/ui/WhatsappIcon"
+import Link from "next/link"
 
 export default function HeroSection() {
   return (
@@ -51,14 +53,24 @@ export default function HeroSection() {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <a href="tel:+60113785354">
+              <Link href="/contact" passHref legacyBehavior>
                 <Button size="lg" className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-5 w-full sm:w-auto">
                   Start Your Journey
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
-              </a>
-              <a href="tel:+60113785354">
-                <Button size="lg" variant="outline" className="border-white/20 text-black hover:bg-slate-800 hover:text-white px-6 py-5 w-full sm:w-auto">
+              </Link>
+              <a
+                href="https://wa.me/60142333436?text=Hi%2C%20I%20am%20interested%20in%20a%20free%20consultation%20with%20Bursa%20Trading%20Academy."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto"
+              >
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-white/20 text-black hover:bg-slate-800 hover:text-white px-6 py-5 flex items-center justify-center w-full sm:w-auto"
+                >
+                  <WhatsappIcon className="h-5 w-5 mr-2 text-green-500" />
                   Free Consultation
                 </Button>
               </a>

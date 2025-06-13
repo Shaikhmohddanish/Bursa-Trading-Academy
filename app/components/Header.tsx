@@ -43,6 +43,10 @@ export default function Header() {
   // Smooth scroll for anchor links
   const handleNavClick = (href: string) => {
     setIsOpen(false)
+    if (href === "/contact") {
+      window.location.href = "/contact"
+      return
+    }
     if (href.startsWith("#")) {
       // If already on home page, smooth scroll
       if (window.location.pathname === "/") {
@@ -70,7 +74,7 @@ export default function Header() {
             <Link href="/" className="flex items-center space-x-2 lg:space-x-3">
               <div className="w-10 h-10 lg:w-12 lg:h-12 bg-white rounded-lg p-1.5">
                 <Image
-                  src="/logo.jpeg"
+                  src="/logo.png"
                   alt="Bursa Trading Academy"
                   width={48}
                   height={48}
@@ -88,9 +92,9 @@ export default function Header() {
               {navItems.map((item) => (
                 <Link
                   key={item.name}
-                  href={item.href}
+                  href={item.name === "Contact" ? "/contact" : item.href}
                   className="text-white/90 hover:text-white px-3 py-2 font-medium text-sm transition-colors"
-                  onClick={() => handleNavClick(item.href)}
+                  onClick={() => handleNavClick(item.name === "Contact" ? "/contact" : item.href)}
                 >
                   {item.name}
                 </Link>
@@ -99,10 +103,10 @@ export default function Header() {
 
             {/* Desktop Contact & CTA */}
             <div className="hidden lg:flex items-center space-x-4">
-              <a href="tel:+60113785354">
+              <a href="tel:+60142333436">
                 <Button className="flex items-center space-x-2 bg-purple-600 hover:bg-purple-700 px-6 py-2 rounded-full text-white text-sm">
                   <Phone className="h-4 w-4 text-purple-400" />
-                  <span>+60 11-3785 0354</span>
+                  <span>+60 14-233 3436</span>
                 </Button>
               </a>
             </div>
@@ -160,7 +164,7 @@ export default function Header() {
               <div className="flex items-center space-x-3">
                 <div className="w-12 h-12 bg-white rounded-xl p-2 shadow-md">
                   <Image
-                    src="/logo.jpeg"
+                    src="/logo.png"
                     alt="Bursa Trading Academy"
                     width={48}
                     height={48}
@@ -182,12 +186,11 @@ export default function Header() {
                   return (
                     <li key={item.name}>
                       <Link
-                        href={item.href}
+                        href={item.name === "Contact" ? "/contact" : item.href}
                         className="flex items-center space-x-4 p-4 bg-slate-800/60 hover:bg-purple-700/40 rounded-xl text-white font-medium shadow-sm transition-all duration-200 group"
                         onClick={(e) => {
-                          handleNavClick(item.href)
-                          // If it's an anchor, prevent default to avoid instant jump
-                          if (item.href.startsWith("#")) {
+                          handleNavClick(item.name === "Contact" ? "/contact" : item.href)
+                          if ((item.name !== "Contact") && item.href.startsWith("#")) {
                             e.preventDefault()
                           }
                         }}
@@ -205,12 +208,12 @@ export default function Header() {
             <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-slate-700 bg-slate-900/80 rounded-b-2xl space-y-4 shadow-inner">
               <div className="space-y-3">
                 <a
-                  href="tel:+60113785354"
+                  href="tel:+60142333436"
                   className="flex items-center space-x-4 p-4 bg-slate-800/70 hover:bg-purple-700/40 rounded-xl transition-colors text-white shadow-sm"
                 >
                   <Phone className="h-5 w-5 text-purple-400" />
                   <div>
-                    <div className="text-white font-medium">+60 11-3785 0354</div>
+                    <div className="text-white font-medium">+60 14-233 3436</div>
                     <div className="text-white/60 text-xs">Tap to call</div>
                   </div>
                 </a>

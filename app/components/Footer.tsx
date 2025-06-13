@@ -10,7 +10,7 @@ export default function Footer() {
           {/* Company Info */}
           <div className="space-y-6">
             <Link href="/" className="flex items-center space-x-3">
-              <Image src="/logo.jpeg" alt="Bursa Trading Academy" width={40} height={40} className="rounded-lg" />
+              <Image src="/logo.png" alt="Bursa Trading Academy" width={40} height={40} className="rounded-lg" />
               <span className="text-xl font-bold text-white">Bursa Trading Academy</span>
             </Link>
             <p className="text-white/70 leading-relaxed">
@@ -62,6 +62,11 @@ export default function Footer() {
                   Terms & Conditions
                 </Link>
               </li>
+              <li>
+                <Link href="/contact" className="text-white/70 hover:text-purple-400 transition-colors">
+                  Contact
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -71,7 +76,7 @@ export default function Footer() {
             <div className="space-y-4">
               <div className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-purple-400 flex-shrink-0" />
-                <span className="text-white/70">+60 11-3785 0354</span>
+                <span className="text-white/70">+60 14-233 3436</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-purple-400 flex-shrink-0" />

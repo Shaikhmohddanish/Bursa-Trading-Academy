@@ -21,13 +21,13 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: "/favicon.svg", type: "image/svg+xml" },
-      { url: "/logo.jpeg", type: "image/jpeg" }
+      { url: "/logo.png", type: "image/png" }
     ],
     shortcut: [
       { url: "/favicon.svg", type: "image/svg+xml" }
     ],
     apple: [
-      { url: "/logo.jpeg", type: "image/jpeg" }
+      { url: "/logo.png", type: "image/png" }
     ]
   },
   generator: 'v0.dev'

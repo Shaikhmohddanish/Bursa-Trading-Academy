@@ -17,21 +17,22 @@ export const metadata: Metadata = {
     url: "https://bursatradingacademy.com",
     siteName: "Bursa Trading Academy",
     type: "website",
+    images: [
+      {
+        url: "/preview.jpeg", // your custom preview image
+        alt: "Bursa Trading Academy Preview",
+      },
+    ],
   },
   icons: {
-    icon: [
-      { url: "/favicon.svg", type: "image/svg+xml" },
-      { url: "/logo.png", type: "image/png" }
-    ],
-    shortcut: [
-      { url: "/favicon.svg", type: "image/svg+xml" }
-    ],
-    apple: [
-      { url: "/logo.png", type: "image/png" }
-    ]
+    icon: [{ url: "/logo.jpeg", type: "image/jpeg" }],
+    shortcut: [{ url: "/logo.jpeg", type: "image/jpeg" }],
+    apple: [{ url: "/logo.jpeg", type: "image/jpeg" }],
   },
-  generator: 'v0.dev'
-}
+  generator: "Next.js",
+  applicationName: "Bursa Trading Academy",
+};
+
 
 export default function RootLayout({
   children,

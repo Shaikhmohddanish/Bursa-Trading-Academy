@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
@@ -29,6 +29,8 @@ type FormValues = z.infer<typeof formSchema>
 export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
+  const [showLoader, setShowLoader] = useState(false)
+  const popupRef = useRef<HTMLDivElement | null>(null)
 
   // Initialize form
   const form = useForm<FormValues>({
@@ -49,11 +51,14 @@ export default function ContactPage() {
   // Handle form submission
   const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true)
-
+    setShowLoader(true)
     try {
-      // Simulate API call with timeout
-      await new Promise((resolve) => setTimeout(resolve, 1500))
-      console.log("Form submitted:", data)
+      const response = await fetch("/api/contact-proxy", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      })
+      if (!response.ok) throw new Error("Network response was not ok")
       setSubmitStatus("success")
       form.reset()
     } catch (error) {
@@ -61,6 +66,7 @@ export default function ContactPage() {
       setSubmitStatus("error")
     } finally {
       setIsSubmitting(false)
+      setShowLoader(false)
     }
   }
 
@@ -129,6 +135,48 @@ export default function ContactPage() {
       <Header />
 
       <main className="pt-32 pb-20">
+        {showLoader && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
+            <div className="bg-white rounded-full p-6 shadow-lg animate-spin">
+              <svg className="h-10 w-10 text-blue-900" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+            </div>
+          </div>
+        )}
+        {/* Popup message */}
+        {(submitStatus === "success" || submitStatus === "error") && (
+          <div
+            ref={popupRef}
+            className={`fixed top-8 left-1/2 z-50 -translate-x-1/2 px-6 py-4 rounded-xl shadow-2xl flex items-center gap-4 transition-all duration-300
+              ${submitStatus === "success" ? "bg-green-500/95 text-white border-2 border-green-700" : "bg-red-500/95 text-white border-2 border-red-700"}
+            `}
+            role="alert"
+            style={{ minWidth: 320, maxWidth: 400 }}
+          >
+            {submitStatus === "success" ? (
+              <>
+                <CheckCircle className="h-6 w-6 text-white" />
+                <span className="font-semibold">Message sent successfully! We'll get back to you soon.</span>
+              </>
+            ) : (
+              <>
+                <AlertCircle className="h-6 w-6 text-white" />
+                <span className="font-semibold">There was an error sending your message. Please try again.</span>
+              </>
+            )}
+            <button
+              className="ml-auto text-white/80 hover:text-white focus:outline-none text-2xl px-2"
+              onClick={() => setSubmitStatus("idle")}
+              aria-label="Dismiss"
+              style={{ lineHeight: 1 }}
+            >
+              ×
+            </button>
+          </div>
+        )}
+
         {/* Hero Section */}
         <section className="container mx-auto px-4 mb-16">
           <div className="text-center max-w-3xl mx-auto">

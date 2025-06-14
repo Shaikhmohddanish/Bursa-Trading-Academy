@@ -82,7 +82,7 @@ export default function Header() {
                   className="w-full h-full object-contain"
                 />
               </div>
-              <div className="hidden sm:block">
+              <div>
                 <h1 className="text-lg lg:text-xl font-bold text-white">Bursa Trading Academy</h1>
                 <div className="text-xs text-purple-300">Professional Trading Education</div>
               </div>

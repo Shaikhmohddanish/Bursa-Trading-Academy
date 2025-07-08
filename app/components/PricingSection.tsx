@@ -33,6 +33,7 @@ export default function PricingSection() {
       modules: "11 Module",
       popular: false,
       purchased: true,
+      paymentLink: "https://rzp.io/rzp/53aYFIMF",
       features: [
         "Complete KLSE Trading Fundamentals",
         "Technical Analysis Mastery",
@@ -48,6 +49,7 @@ export default function PricingSection() {
       modules: "8 Module",
       popular: false,
       purchased: false,
+      paymentLink: "https://rzp.io/rzp/IpdmzXK",
       features: [
         "Hong Kong Stock Index Trading",
         "Advanced Chart Patterns",
@@ -63,6 +65,7 @@ export default function PricingSection() {
       modules: "9 Module",
       popular: false,
       purchased: false,
+      paymentLink: "https://rzp.io/rzp/XwICGiDA",
       features: [
         "Forex Trading Strategies",
         "Commodity Market Analysis",
@@ -80,6 +83,7 @@ export default function PricingSection() {
       modules: "37 Module",
       popular: true,
       purchased: false,
+      paymentLink: "https://rzp.io/rzp/w0Iu0pDT",
       features: [
         "All Courses Included",
         "Complete Trading Education",
@@ -159,7 +163,7 @@ export default function PricingSection() {
                 </ul>
 
                 <a
-                  href={`https://wa.me/60142333436?text=Hi%2C%20I%20am%20interested%20in%20the%20${encodeURIComponent(plan.name)}%20(${encodeURIComponent(plan.price)}).%20Please%20share%20more%20details.`}
+                  href={plan.paymentLink}
                   target="_blank"
                   rel="noopener noreferrer"
                 >

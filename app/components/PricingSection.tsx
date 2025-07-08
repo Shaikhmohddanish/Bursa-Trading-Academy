@@ -28,8 +28,8 @@ export default function PricingSection() {
 
   const pricingPlans = [
     {
-      name: "KLSE Full Course",
-      price: "RM2999",
+      name: "KLSE",
+      price: "RM4999",
       modules: "11 Module",
       popular: false,
       purchased: true,
@@ -43,11 +43,11 @@ export default function PricingSection() {
       ],
     },
     {
-      name: "HSI Full Course",
-      price: "RM2499",
+      name: "HSI",
+      price: "RM4999",
       modules: "8 Module",
       popular: false,
-      purchased: true,
+      purchased: false,
       features: [
         "Hong Kong Stock Index Trading",
         "Advanced Chart Patterns",
@@ -59,7 +59,7 @@ export default function PricingSection() {
     },
     {
       name: "Currency & Commodity",
-      price: "RM2999",
+      price: "RM4999",
       modules: "9 Module",
       popular: false,
       purchased: false,
@@ -70,21 +70,8 @@ export default function PricingSection() {
         "Multi-Market Approach",
         "Lifetime Access",
         "Advanced Tools",
-      ],
-    },
-    {
-      name: "US & SGX Full Course",
-      price: "RM2499",
-      modules: "9 Module",
-      popular: false,
-      purchased: false,
-      features: [
-        "US & Singapore Markets",
-        "International Trading",
-        "Cross-Market Analysis",
-        "Global Opportunities",
-        "Lifetime Access",
-        "Market Research",
+        "Crypto market",
+        "FCPO market",
       ],
     },
     {
@@ -138,7 +125,14 @@ export default function PricingSection() {
                   </Badge>
                 </div>
               )}
-
+              {/* Add Best Value label above All-in-one Course */}
+              {plan.name === "All-in-one Course" && (
+                <div className="absolute -top-12 left-1/2 transform -translate-x-1/2">
+                  <Badge className="bg-gradient-to-r from-green-500 to-blue-500 text-white px-4 py-1">
+                    Best Value
+                  </Badge>
+                </div>
+              )}
               {plan.purchased && (
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                   <Badge className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-4 py-1">

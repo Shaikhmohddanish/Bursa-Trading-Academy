@@ -33,7 +33,7 @@ export default function PricingSection() {
       modules: "11 Module",
       popular: false,
       purchased: true,
-      paymentLink: "https://rzp.io/rzp/53aYFIMF",
+      paymentLink: "https://rzp.io/rzp/HaszZtT",
       features: [
         "Complete KLSE Trading Fundamentals",
         "Technical Analysis Mastery",
@@ -49,7 +49,7 @@ export default function PricingSection() {
       modules: "8 Module",
       popular: false,
       purchased: false,
-      paymentLink: "https://rzp.io/rzp/IpdmzXK",
+      paymentLink: "https://rzp.io/rzp/xmv1l6FJ",
       features: [
         "Hong Kong Stock Index Trading",
         "Advanced Chart Patterns",
@@ -65,7 +65,7 @@ export default function PricingSection() {
       modules: "9 Module",
       popular: false,
       purchased: false,
-      paymentLink: "https://rzp.io/rzp/XwICGiDA",
+      paymentLink: "https://rzp.io/rzp/ZSHK5kXW",
       features: [
         "Forex Trading Strategies",
         "Commodity Market Analysis",
@@ -83,7 +83,7 @@ export default function PricingSection() {
       modules: "37 Module",
       popular: true,
       purchased: false,
-      paymentLink: "https://rzp.io/rzp/w0Iu0pDT",
+      paymentLink: "https://rzp.io/rzp/gy1o1GG",
       features: [
         "All Courses Included",
         "Complete Trading Education",

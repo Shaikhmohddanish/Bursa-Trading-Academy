@@ -46,7 +46,7 @@ export default function HeroSection() {
                 <div className="text-xs sm:text-sm text-white/60">Avg Growth</div>
               </div>
               <div className="text-center p-2 sm:p-4 bg-slate-800 rounded-lg">
-                <div className="text-xl sm:text-2xl font-bold text-green-400">1000+</div>
+                <div className="text-xl sm:text-2xl font-bold text-green-400">3000+</div>
                 <div className="text-xs sm:text-sm text-white/60">Students</div>
               </div>
             </div>
@@ -60,7 +60,7 @@ export default function HeroSection() {
                 </Button>
               </Link>
               <a
-                href="https://wa.me/60142333436?text=Hi%2C%20I%20am%20interested%20in%20a%20free%20consultation%20with%20Bursa%20Trading%20Academy."
+                href="https://bursawebinar.online/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto"
@@ -70,8 +70,7 @@ export default function HeroSection() {
                   variant="outline"
                   className="border-white/20 text-black hover:bg-slate-800 hover:text-white px-6 py-5 flex items-center justify-center w-full sm:w-auto"
                 >
-                  <WhatsappIcon className="h-5 w-5 mr-2 text-green-500" />
-                  Free Consultation
+                  Join Webinar
                 </Button>
               </a>
             </div>

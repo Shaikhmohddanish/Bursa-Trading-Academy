@@ -22,7 +22,7 @@ export default function StatsSection() {
     },
     {
       icon: Users,
-      value: "1000+",
+      value: "3000+",
       label: "Successful Students",
       description: "Traders have transformed their financial future through our comprehensive programs.",
       color: "text-green-400",

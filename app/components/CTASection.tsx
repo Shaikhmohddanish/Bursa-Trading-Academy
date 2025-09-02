@@ -74,7 +74,7 @@ export default function CTASection() {
                 </Button>
               </Link>
               <a
-                href="https://wa.me/60142333436?text=Hi%2C%20I%20am%20interested%20in%20a%20free%20consultation%20with%20Bursa%20Trading%20Academy."
+                href="https://bursawebinar.online/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto"
@@ -84,8 +84,7 @@ export default function CTASection() {
                   variant="outline"
                   className="border-white/20 text-black hover:bg-white/10 hover:text-white text-lg px-8 py-6 flex items-center justify-center w-full sm:w-auto"
                 >
-                  <WhatsappIcon className="h-5 w-5 mr-2 text-green-500" />
-                  Free Consultation
+\                  Join Webinar
                 </Button>
               </a>
             </div>

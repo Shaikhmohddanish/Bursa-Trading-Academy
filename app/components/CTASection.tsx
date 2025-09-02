@@ -84,7 +84,7 @@ export default function CTASection() {
                   variant="outline"
                   className="border-white/20 text-black hover:bg-white/10 hover:text-white text-lg px-8 py-6 flex items-center justify-center w-full sm:w-auto"
                 >
-\                  Join Webinar
+                 Join Webinar
                 </Button>
               </a>
             </div>

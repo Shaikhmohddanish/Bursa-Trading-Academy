@@ -60,7 +60,7 @@ export default function HeroSection() {
                 </Button>
               </Link>
               <a
-                href="https://bursawebinar.online/"
+                href="https://bursawebinar.my/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto"

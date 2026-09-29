@@ -74,7 +74,7 @@ export default function CTASection() {
                 </Button>
               </Link>
               <a
-                href="https://bursawebinar.online/"
+                href="https://bursawebinar.my/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto"
